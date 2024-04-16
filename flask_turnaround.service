@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve turnaround_app
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/apps/turnaround-api
+Environment="PATH=/root/apps/venv/bin"
+ExecStart=/root/apps/venv/bin/gunicorn --workers 999 --bind 0.0.0.0:8338 -m 777 main:app
+
+[Install]
+WantedBy=multi-user.target
